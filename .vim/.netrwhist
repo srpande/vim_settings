@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/sirish/.tvm'
+let g:netrw_dirhist_2='/home/sirish/.tvm/tophub'
+let g:netrw_dirhist_3='/fac/proj_software/sirish/ml/tvm'
+let g:netrw_dirhist_4='/fac/proj_software/sirish/ml/tvm/tests/python/relay/aot/__pycache__'
+let g:netrw_dirhist_5='/fac/proj_software/sirish/ml/tvm/python/tvm/topi/generic'
+let g:netrw_dirhist_6='/fac/proj_software/sirish/ml/tvm/python/tvm/relay/backend'
