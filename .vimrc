@@ -1,30 +1,32 @@
 syntax enable
-source ~/.vimrc_files/cscope.vim
-source ~/.vimrc_files/taglist.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" cscope.vim and taglist.vim moved to use pack vim package manager in .vim/pack/.....
+
 set nocompatible              " be iMproved, required
-filetype off                  " required
 
-"set history=100
-
-" set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vundle -- not ussing vundle plugin manager, moved to using pack plugin
+" manager effective vim 8+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"filetype off                  " required
+"
+""set history=100
+"
+"" set the runtime path to include Vundle and initialize
+""set rtp+=~/.vim/bundle/Vundle.vim
+"set rtp+=~/.vim/bundle/vundle
+"call vundle#rc()
+"" alternatively, pass a path where Vundle should install plugins
+""call vundle#begin('~/some/path/here')
+"
 "Bundle 'Rykka/riv.vim'
 "Bundle 'Rykka/clickable.vim'
-"Bundle 'mbadran/headlights'
-Bundle 'majutsushi/tagbar'
-Bundle 'Yggdroot/indentLine'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+""Bundle 'majutsushi/tagbar'
+""Bundle 'Yggdroot/indentLine'
+""Bundle 'mbadran/headlights'
+"
+"" All of your Plugins must be added before the following line
+"call vundle#end()            " required
+"filetype plugin indent on    " required
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -90,12 +92,14 @@ endfunction
 " map sp i<Space><Esc>
 " set dictionary=dict
 " one screen forward terherasfakjsdfa;lskjdfa;skljdfalksjdflkasjdfa
+map ; 66j
+map [ 66k
 map , 
 " one screen backword
 map z 
 " insert an empty space
 "nnoremap s i<Space><Esc>
-nnoremap s i<Space><Esc>
+"nnoremap s i<Space><Esc>
 ":map s i<Space><Esc>
 
 :map <C-E> <Esc>:Vexplore<CR>
@@ -151,6 +155,8 @@ au BufRead,BufNewFile *.s set ts=8
 :map <leader>u :checktime<CR>
 
 :map <leader>0 :set paste<CR>
+
+"remove all blank spaces at the end of the line
 :map <leader>1 :%s/\s\+$//e
 
 "only required temporarility
@@ -163,16 +169,27 @@ au BufRead,BufNewFile *.s set ts=8
 :map <leader>ca :%s/^--- a\//--- /e
 :map <leader>cb :%s/^+++ b\//+++ /e
 
+"get clang-format from llvm-project/clang/tools/clang-format/clang-format.py
+
+" default is python3
+if has('python')
+  map <C-I> :pyf /home/sirpande/compiler/llvm_tip/llvm-project/clang/tools/clang-format/clang-format.py<cr>
+  imap <C-I> <c-o> :pyf /home/sirpande/compiler/llvm_tip/llvm-project/clang/tools/clang-format/clang-format.py<cr>
+elseif has('python3')
+  map <C-R> :py3f /home/sirpande/compiler/llvm_tip/llvm-project/clang/tools/clang-format/clang-format.py<cr>
+endif
+
 " clang format
 :function FormatFile()
 :   let l:lines="all"
 :   pyf /home/sirish/.vim/clang-format.py
 :endfunction
 
+
 "nnoremap cf :call<SID>formatfile()<cr>
 map <C-@>9 <Esc>:call FormatFile() <CR>
 "map <leader>pyf :pyf /home/sirish/.vim/clang-format.py<cr>
-map <C-I> :pyf /home/sirish/.vim/clang-format.py<cr>
+"map <C-I> :pyf /home/sirish/.vim/clang-format.py<cr>
 "imap <C-I> <C-o> :pyf /home/sirish/.vim/clang-format.py<cr>
 
 " clang format
@@ -234,6 +251,12 @@ nmap <C-j> <C-W>j
 nmap <C-k> <C-W>k
 nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
+
+nmap lw1 1 <C-w>>
+nmap lw5 5 <C-w>>
+nmap lw10 10 <C-w>>
+nmap lw15 15 <C-w>>
+nmap lw20 20 <C-w>>
 
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
