@@ -1,4 +1,5 @@
 syntax enable
+"" clang-format.py is taken from compiler location. Make sure your compiler location is correct.
 "" cscope.vim and taglist.vim moved to use pack vim package manager in .vim/pack/.....
 
 set nocompatible              " be iMproved, required
@@ -141,8 +142,8 @@ nnoremap <leader>s :w!
 au BufRead,BufNewFile *.py set ts=4
 au BufRead,BufNewFile *.py set sw=4
 
-au! BufRead,BufNewFile *.td     set filetype=tablegen
-au! BufRead,BufNewFile *.ll     set filetype=llvm
+au BufRead,BufNewFile *.td     set filetype=tablegen
+au BufRead,BufNewFile *.ll     set filetype=llvm
 au BufRead,BufNewFile *.dmp set filetype=hexagon
 "au BufRead,BufNewFile *.s set filetype=hexagon
 au BufRead,BufNewFile *.s set ts=8
@@ -179,18 +180,16 @@ elseif has('python3')
   map <C-R> :py3f /home/sirpande/compiler/llvm_tip/llvm-project/clang/tools/clang-format/clang-format.py<cr>
 endif
 
+" no need for this  clang-format is not taken from actuall llvm-project
+" and is called with Control-R -- see above
+"map <C-@>9 <Esc>:call FormatFile() <CR>
 " clang format
-:function FormatFile()
-:   let l:lines="all"
-:   pyf /home/sirish/.vim/clang-format.py
-:endfunction
+":function FormatFile()
+":   let l:lines="all"
+":   pyf /home/sirish/.vim/clang-format.py
+":endfunction
 
 
-"nnoremap cf :call<SID>formatfile()<cr>
-map <C-@>9 <Esc>:call FormatFile() <CR>
-"map <leader>pyf :pyf /home/sirish/.vim/clang-format.py<cr>
-"map <C-I> :pyf /home/sirish/.vim/clang-format.py<cr>
-"imap <C-I> <C-o> :pyf /home/sirish/.vim/clang-format.py<cr>
 
 " clang format
 ":map <leader>c :ClangFormatAutoEnable
@@ -263,4 +262,3 @@ map j gj
 
 " Move ^('use'.* -> line up and append to the previous line
 ":%g/^('use'.*/normal kJ
-

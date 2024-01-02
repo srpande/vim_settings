@@ -1,0 +1,3 @@
+[submodule ".vim/pack/vendor/start/tagbar"]
+	path = .vim/pack/vendor/start/tagbar
+	url = https://github.com/majutsushi/tagbar.git
