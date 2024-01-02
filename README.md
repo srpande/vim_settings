@@ -1,5 +1,5 @@
 # vim_settings 
 
 My personal vim settings
+Only uses pack plugin (requires vim 8.0 or higher) and .vim sudirectory
 
-At somepoint, I should use one plugin manager for vim, and just use .vim instead of  .vimrc_files
