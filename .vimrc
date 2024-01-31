@@ -71,7 +71,7 @@ endfunction
 
 "nnoremap <C-C> :call <SID>ToggleColorColumn()<CR>
 "nnoremap <C-h> :call<SID>LongLineHLToggle()<cr>
-nnoremap hl :call<SID>LongLineHLToggle()<cr>
+"nnoremap hl :call<SID>LongLineHLToggle()<cr>
 
 hi OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%>81v/
@@ -85,10 +85,6 @@ fun! s:LongLineHLToggle()
   echo "Long lines unhighlighted"
  endif
 endfunction
-
-   "always do vertical split
-":set diffopt=filler,vertical
-:map dfs :diffsplit
 
 " map sp i<Space><Esc>
 " set dictionary=dict
@@ -152,6 +148,10 @@ au BufRead,BufNewFile *.s set ts=8
 :map <leader>d :IndentLinesDisable<CR>
 :map <leader>e :IndentLinesEnable<CR>
 
+" Ignore case-sensitive search
+:map <leader>i :set ignorecase<CR> 
+:map <leader>I :set ignorecase<CR> 
+
 "update opened file
 :map <leader>u :checktime<CR>
 
@@ -163,7 +163,14 @@ au BufRead,BufNewFile *.s set ts=8
 "only required temporarility
 :map <leader>2 :s/]), (/]),<C-V><C-M>(/g
 
+:map <leader>3 :call<SID>LongLineHLToggle()<cr>
+
 :map vds :vertical diffsplit
+"always do vertical split
+:set diffopt=filler,vertical
+:map dfs :diffsplit
+
+
 
 "From git to patch, replace ---a and ---b
 ":map <leader>c :s/^--- a\//--- /e|s/^+++ b\//+++ /e
@@ -251,11 +258,14 @@ nmap <C-k> <C-W>k
 nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
 
-nmap lw1 1 <C-w>>
-nmap lw5 5 <C-w>>
-nmap lw10 10 <C-w>>
-nmap lw15 15 <C-w>>
-nmap lw20 20 <C-w>>
+"" mapping of 'l' causes <l> movement of left becomes slower
+"" Never map basic keys like h j k l. Otherwise they will be slower
+"" chechk with :verbose :map <key. eg. l> to see where all they are mapped
+"nmap lw1 1 <C-w>> -> this is pretty useless, as this is just l
+"nmap lw5 5 <C-w>>
+"nmap lw10 10 <C-w>>
+"nmap lw15 15 <C-w>>
+"nmap lw20 20 <C-w>>
 
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
